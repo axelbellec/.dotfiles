@@ -1,0 +1,8 @@
+# Secrets directory - NEVER commit
+secrets/
+
+# Backup files
+*.backup
+
+# macOS
+.DS_Store
