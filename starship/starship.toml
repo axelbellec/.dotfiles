@@ -1,0 +1,107 @@
+# Starship Prompt Configuration
+# https://starship.rs/config/
+
+# Timeout for commands (ms)
+command_timeout = 1000
+
+# Newline between prompts
+add_newline = true
+
+# Prompt format
+format = """
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$golang\
+$rust\
+$docker_context\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character"""
+
+# ---------------------------------------------------------
+# Directory
+# ---------------------------------------------------------
+[directory]
+truncation_length = 4
+truncate_to_repo = true
+style = "bold cyan"
+
+# ---------------------------------------------------------
+# Git
+# ---------------------------------------------------------
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+conflicted = " "
+ahead = " ${count}"
+behind = " ${count}"
+diverged = " "
+untracked = " ${count}"
+stashed = " "
+modified = " ${count}"
+staged = " ${count}"
+deleted = " ${count}"
+
+# ---------------------------------------------------------
+# Languages (only show when relevant)
+# ---------------------------------------------------------
+[python]
+symbol = " "
+style = "yellow"
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", ".python-version"]
+
+[nodejs]
+symbol = " "
+style = "green"
+detect_extensions = ["js", "ts"]
+detect_files = ["package.json", ".nvmrc"]
+
+[golang]
+symbol = " "
+style = "cyan"
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum"]
+
+[rust]
+symbol = " "
+style = "red"
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+
+# ---------------------------------------------------------
+# DevOps
+# ---------------------------------------------------------
+[docker_context]
+symbol = " "
+style = "blue"
+only_with_files = true
+
+[kubernetes]
+symbol = "󱃾 "
+style = "blue"
+disabled = false
+detect_files = ["k8s", "kubernetes", "kustomization.yaml"]
+detect_folders = ["k8s", "kubernetes"]
+
+# ---------------------------------------------------------
+# Command Duration
+# ---------------------------------------------------------
+[cmd_duration]
+min_time = 2000  # Show if command takes > 2s
+style = "yellow"
+format = "took [$duration]($style) "
+
+# ---------------------------------------------------------
+# Prompt Character
+# ---------------------------------------------------------
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"

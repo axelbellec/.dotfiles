@@ -13,12 +13,20 @@ My personal dotfiles for macOS.
 │   └── tokens.zsh         # API tokens and passwords
 ├── shell/
 │   └── .zprofile          # Login shell (Homebrew)
+├── starship/
+│   └── starship.toml      # Prompt configuration
 ├── zsh/
 │   ├── .zshrc             # Entry point
-│   ├── core.zsh           # Oh-my-zsh, ASDF, completions
+│   ├── core.zsh           # Oh-my-zsh, plugins, FZF, Starship
 │   ├── work.zsh           # Work tools (Go, k8s, SOPS)
-│   └── personal.zsh       # Personal tools (bun, zoxide, etc.)
+│   └── personal.zsh       # Personal tools, aliases, functions
 └── install.sh             # Symlink installer
+```
+
+## Prerequisites
+
+```bash
+brew install fd starship fzf bat eza ripgrep
 ```
 
 ## Installation
@@ -38,6 +46,43 @@ touch ~/.dotfiles/secrets/tokens.zsh
 # Restart terminal
 ```
 
+## Features
+
+### Keybindings
+
+| Keybinding | Action |
+|------------|--------|
+| `Ctrl+R` | Fuzzy search command history |
+| `Ctrl+T` | Fuzzy find files |
+| `Alt+C` | Fuzzy cd into directories |
+| `ESC ESC` | Prefix command with sudo |
+
+### Aliases
+
+| Alias | Command |
+|-------|---------|
+| `ls`, `ll`, `la` | eza with icons and git status |
+| `tree`, `lt` | eza tree view |
+| `cat` | bat with syntax highlighting |
+| `find` | fd (faster find) |
+| `ff` | fzf with bat preview |
+| `fcd` | fuzzy cd |
+| `z <dir>` | zoxide smart cd |
+| `k` | kubectl |
+| `kx` | kubectx |
+
+### Functions
+
+| Function | Description |
+|----------|-------------|
+| `export_env [file]` | Load .env file |
+| `mkcd <dir>` | Create and cd into directory |
+| `gs` | Quick git status |
+
+### Oh-My-Zsh Plugins
+
+`git`, `aliases`, `sudo`, `extract`, `copypath`, `copyfile`, `docker`, `jsontools`, `fzf`
+
 ## Adding New Configuration
 
 ### New environment variable
@@ -51,7 +96,7 @@ touch ~/.dotfiles/secrets/tokens.zsh
 
 Same logic as above - add to the appropriate module file.
 
-### New tool configuration (e.g., starship, neovim)
+### New tool configuration (e.g., neovim)
 
 1. Create directory: `mkdir ~/.dotfiles/toolname/`
 2. Add config file(s)

@@ -36,6 +36,10 @@ create_symlink "$DOTFILES/shell/.zprofile" "$HOME/.zprofile"
 # Git
 create_symlink "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 
+# Starship
+mkdir -p "$HOME/.config"
+create_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+
 echo ""
 echo "Done! Restart your terminal or run: source ~/.zshrc"
 echo ""
