@@ -1,8 +1,14 @@
 [core]
 	excludesfile = ~/.dotfiles/git/.gitignore_global
+
 [user]
-	email = axel@synapse-medicine.com
+	email = abellec.22+github@gmail.com
 	name = Axel Bellec
+
+# Load work-specific config for Synapse repos
+[includeIf "gitdir:~/synapse/"]
+	path = ~/.dotfiles/git/.gitconfig-work
+
 [init]
 	defaultBranch = main
 [filter "lfs"]

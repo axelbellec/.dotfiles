@@ -69,6 +69,26 @@ touch ~/.dotfiles/secrets/tokens.zsh
 # Restart terminal
 ```
 
+## Git Multi-Identity Setup
+
+This configuration automatically uses different Git identities based on repository location:
+
+- **Personal repos (GitHub)**: `abellec.22+github@gmail.com` (default)
+- **Work repos (Synapse/GitLab)**: `axel@synapse-medicine.com` (for `~/synapse/**`)
+
+The correct email is automatically selected when you commit - no manual configuration needed!
+
+**Verify it works:**
+```bash
+# In personal repos (should show GitHub email)
+cd ~/.dotfiles
+git config user.email
+
+# In work repos (should show Synapse email)  
+cd ~/synapse/app
+git config user.email
+```
+
 ## Features
 
 ### Keybindings

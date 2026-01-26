@@ -48,6 +48,7 @@ create_symlink "$DOTFILES/shell/.zprofile" "$HOME/.zprofile"
 
 # Git
 create_symlink "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+create_symlink "$DOTFILES/git/.gitconfig-work" "$HOME/.gitconfig-work"
 
 # Starship
 mkdir -p "$HOME/.config"
