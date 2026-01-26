@@ -6,6 +6,7 @@ My personal dotfiles for macOS.
 
 ```
 ~/.dotfiles/
+├── Brewfile               # Homebrew dependencies
 ├── git/
 │   ├── .gitconfig         # Git configuration
 │   └── .gitignore_global  # Global gitignore
@@ -25,8 +26,30 @@ My personal dotfiles for macOS.
 
 ## Prerequisites
 
+### 1. Install Homebrew (if not already installed)
+
 ```bash
-brew install fd starship fzf bat eza ripgrep
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### 2. Install dependencies via Brewfile
+
+```bash
+cd ~/.dotfiles
+brew bundle install
+```
+
+This will install all tools defined in the `Brewfile`:
+- **Core**: git, asdf, starship, fzf, fd, bat, eza, ripgrep, zoxide
+- **Dev tools**: uv, gh, jq, yq, httpie, go-task, tmux, git-lfs
+- **Work tools**: kubectl, kubectx, k9s, helm, sops, docker, mysql-client, gnu-sed
+- **GUI apps**: Bruno, DB Browser for SQLite, KeePassXC, ngrok
+
+**Optional commands:**
+```bash
+brew bundle install --no-upgrade   # Skip upgrading existing packages
+brew bundle cleanup                 # Remove packages not in Brewfile
+brew bundle dump --force            # Update Brewfile with current packages
 ```
 
 ## Installation

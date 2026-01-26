@@ -4,5 +4,8 @@ secrets/
 # Backup files
 *.backup
 
+# Homebrew
+Brewfile.lock.json
+
 # macOS
 .DS_Store

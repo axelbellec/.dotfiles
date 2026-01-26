@@ -8,6 +8,19 @@ DOTFILES="$HOME/.dotfiles"
 
 echo "Installing dotfiles..."
 
+# Check for Homebrew and Brewfile
+if ! command -v brew &> /dev/null; then
+    echo ""
+    echo "⚠️  Warning: Homebrew is not installed!"
+    echo "Install it from: https://brew.sh"
+    echo ""
+elif [[ -f "$DOTFILES/Brewfile" ]]; then
+    echo ""
+    echo "📦 Brewfile found! Install dependencies with:"
+    echo "   cd ~/.dotfiles && brew bundle install"
+    echo ""
+fi
+
 # Backup existing files if they're not symlinks
 backup_if_exists() {
     local file="$1"
