@@ -18,6 +18,7 @@ brew "asdf"
 brew "starship"          # Prompt
 brew "fzf"              # Fuzzy finder (Ctrl+R, Ctrl+T, Alt+C)
 brew "zoxide"           # Smart cd
+brew "stow"             # Symlink manager
 
 # Modern CLI replacements (aliased in zsh configs)
 brew "fd"               # Better find
