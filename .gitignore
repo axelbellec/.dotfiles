@@ -1,3 +1,6 @@
+# Local claude code settings
+.claude/
+
 # Secrets directory - NEVER commit
 secrets/
 
