@@ -56,9 +56,6 @@ export PATH="$PATH:$HOME/.local/bin"
 # LM Studio CLI
 export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 
-# Claude CLI
-alias claude="$HOME/.claude/local/claude"
-
 # OpenCode
 export PATH="$HOME/.opencode/bin:$PATH"
 
