@@ -16,6 +16,20 @@ My personal dotfiles for macOS.
 │   └── .zprofile          # Login shell (Homebrew)
 ├── starship/
 │   └── starship.toml      # Prompt configuration
+├── claude/
+│   └── .claude/
+│       ├── commands/          # Custom slash commands
+│       │   ├── advise.md      # /advise - Trade-off analysis
+│       │   ├── architect.md   # /architect - System design
+│       │   ├── debug.md       # /debug - Systematic debugging
+│       │   ├── doc.md         # /doc - Documentation generation
+│       │   ├── implement.md   # /implement - KISS implementation
+│       │   ├── perf.md        # /perf - Performance analysis
+│       │   ├── release-notes.md # /release-notes - French release notes
+│       │   ├── review.md      # /review - Code review
+│       │   └── ticket.md      # /ticket - Ticket creation
+│       ├── settings.json      # Claude Code settings
+│       └── statusline-command.sh # Custom status bar
 ├── zsh/
 │   ├── .zshrc             # Entry point
 │   ├── core.zsh           # Oh-my-zsh, plugins, FZF, Starship
@@ -63,11 +77,49 @@ mkdir -p ~/.dotfiles/secrets
 touch ~/.dotfiles/secrets/tokens.zsh
 # Add your secrets to tokens.zsh
 
-# Install symlinks
+# Install symlinks (includes Claude Code config via stow)
 ~/.dotfiles/install.sh
 
 # Restart terminal
 ```
+
+## Claude Code
+
+Claude Code configuration is managed as a stow package. This symlinks `~/.claude/` to the dotfiles repo, keeping commands, settings, and the status bar version-controlled.
+
+### Install with stow
+
+```bash
+cd ~/.dotfiles
+stow claude
+```
+
+This creates `~/.claude/` → `~/.dotfiles/claude/.claude/` symlinks for:
+- `commands/` — custom slash commands (`/implement`, `/architect`, `/debug`, etc.)
+- `settings.json` — editor settings (always-think, plugins, status line)
+- `statusline-command.sh` — context-aware status bar
+
+### Custom slash commands
+
+| Command | Description |
+|---------|-------------|
+| `/commit <context>` | Semantic commit with body |
+| `/implement <what>` | KISS feature implementation |
+| `/architect <system>` | Architecture & system design with mermaid diagrams |
+| `/debug <error>` | Systematic debugging (reproduce → investigate → fix) |
+| `/doc <file>` | Developer-focused documentation |
+| `/release-notes <base>..<target>` | French release notes for product owners |
+| `/advise <decision>` | Technical trade-off analysis |
+| `/perf <code>` | Performance analysis (measure-first) |
+| `/review` | Code review for security, performance, style |
+| `/ticket <description>` | Create a detailed ticket |
+
+### Adding a new command
+
+1. Create `claude/.claude/commands/my-command.md`
+2. Add YAML frontmatter with `description` and optional `argument-hint`
+3. Use `$ARGUMENTS` to reference user input
+4. Commit and push — stow keeps the symlink live
 
 ## Git Multi-Identity Setup
 
@@ -141,10 +193,19 @@ Same logic as above - add to the appropriate module file.
 
 ### New tool configuration (e.g., neovim)
 
-1. Create directory: `mkdir ~/.dotfiles/toolname/`
-2. Add config file(s)
-3. Update `install.sh` to create symlink
+1. Create directory: `mkdir -p ~/.dotfiles/toolname/`
+2. Add config files mirroring the home directory structure (e.g., `toolname/.config/nvim/init.lua`)
+3. Install with stow: `cd ~/.dotfiles && stow toolname`
 4. Commit and push
+
+> **Note:** Stow creates symlinks by mirroring the package directory structure into the target (`~`).
+> For example, `stow claude` links `claude/.claude/` → `~/.claude/`.
+
+### New Claude Code slash command
+
+1. Create `claude/.claude/commands/my-command.md`
+2. The command is immediately available as `/my-command` (stow symlink is live)
+3. Commit and push
 
 ## Secrets Setup
 

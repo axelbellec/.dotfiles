@@ -54,6 +54,16 @@ create_symlink "$DOTFILES/git/.gitconfig-work" "$HOME/.gitconfig-work"
 mkdir -p "$HOME/.config"
 create_symlink "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
 
+# Claude Code (via stow)
+if command -v stow &> /dev/null; then
+    echo "Installing Claude Code config via stow..."
+    stow -d "$DOTFILES" -t "$HOME" claude
+else
+    echo ""
+    echo "⚠️  Warning: stow is not installed, skipping Claude Code config"
+    echo "   Install it with: brew install stow"
+fi
+
 echo ""
 echo "Done! Restart your terminal or run: source ~/.zshrc"
 echo ""
