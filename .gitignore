@@ -1,5 +1,5 @@
 # Local claude code settings
-.claude/
+.claude/settings.local.json
 
 # Secrets directory - NEVER commit
 secrets/
