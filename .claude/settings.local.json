@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(stow:*)",
+      "Bash(readlink:*)",
+      "Bash(git config:*)",
+      "Bash(grep:*)",
+      "Bash(git -C /Users/axelbellec/.dotfiles log --oneline --all)",
+      "Bash(git -C /Users/axelbellec/.dotfiles show 28251ff:install.sh)",
+      "Bash(git -C /Users/axelbellec/.dotfiles status)",
+      "Bash(git -C /Users/axelbellec/.dotfiles log --oneline -20)",
+      "Bash(git reset:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
