@@ -18,16 +18,19 @@ My personal dotfiles for macOS.
 │   └── starship.toml      # Prompt configuration
 ├── claude/
 │   └── .claude/
-│       ├── commands/          # Custom slash commands
-│       │   ├── advise.md      # /advise - Trade-off analysis
-│       │   ├── architect.md   # /architect - System design
-│       │   ├── debug.md       # /debug - Systematic debugging
-│       │   ├── doc.md         # /doc - Documentation generation
-│       │   ├── implement.md   # /implement - KISS implementation
-│       │   ├── perf.md        # /perf - Performance analysis
-│       │   ├── release-notes.md # /release-notes - French release notes
-│       │   ├── review.md      # /review - Code review
-│       │   └── ticket.md      # /ticket - Ticket creation
+│       ├── commands/          # Custom slash commands (x- = extended)
+│       │   ├── x-advise.md      # /x-advise - Trade-off analysis
+│       │   ├── x-architect.md   # /x-architect - System design
+│       │   ├── x-commit.md      # /x-commit - Semantic commit
+│       │   ├── x-communicate.md # /x-communicate - Stakeholder comms
+│       │   ├── x-debug.md       # /x-debug - Systematic debugging
+│       │   ├── x-doc.md         # /x-doc - Documentation generation
+│       │   ├── x-implement.md   # /x-implement - KISS implementation
+│       │   ├── x-perf.md        # /x-perf - Performance analysis
+│       │   ├── x-refactor.md    # /x-refactor - Code refactoring
+│       │   ├── x-release-notes.md # /x-release-notes - French release notes
+│       │   ├── x-review.md      # /x-review - Code review
+│       │   └── x-ticket.md      # /x-ticket - Ticket creation
 │       ├── settings.json      # Claude Code settings
 │       └── statusline-command.sh # Custom status bar
 ├── zsh/
@@ -95,28 +98,32 @@ stow claude
 ```
 
 This creates `~/.claude/` → `~/.dotfiles/claude/.claude/` symlinks for:
-- `commands/` — custom slash commands (`/implement`, `/architect`, `/debug`, etc.)
+- `commands/` — custom slash commands (`/x-implement`, `/x-architect`, `/x-debug`, etc.)
 - `settings.json` — editor settings (always-think, plugins, status line)
 - `statusline-command.sh` — context-aware status bar
 
 ### Custom slash commands
 
+All custom commands use the `x-` prefix (for **extended**) to distinguish them from built-in commands.
+
 | Command | Description |
 |---------|-------------|
-| `/commit <context>` | Semantic commit with body |
-| `/implement <what>` | KISS feature implementation |
-| `/architect <system>` | Architecture & system design with mermaid diagrams |
-| `/debug <error>` | Systematic debugging (reproduce → investigate → fix) |
-| `/doc <file>` | Developer-focused documentation |
-| `/release-notes <base>..<target>` | French release notes for product owners |
-| `/advise <decision>` | Technical trade-off analysis |
-| `/perf <code>` | Performance analysis (measure-first) |
-| `/review` | Code review for security, performance, style |
-| `/ticket <description>` | Create a detailed ticket |
+| `/x-commit <context>` | Semantic commit with body |
+| `/x-implement <what>` | KISS feature implementation |
+| `/x-architect <system>` | Architecture & system design with mermaid diagrams |
+| `/x-debug <error>` | Systematic debugging (reproduce → investigate → fix) |
+| `/x-doc <file>` | Developer-focused documentation |
+| `/x-release-notes <base>..<target>` | French release notes for product owners |
+| `/x-advise <decision>` | Technical trade-off analysis |
+| `/x-perf <code>` | Performance analysis (measure-first) |
+| `/x-refactor <code>` | Refactor code following KISS principles |
+| `/x-review` | Code review for security, performance, style |
+| `/x-communicate <topic>` | Pedagogical communication for stakeholders |
+| `/x-ticket <description>` | Create a detailed ticket |
 
 ### Adding a new command
 
-1. Create `claude/.claude/commands/my-command.md`
+1. Create `claude/.claude/commands/x-my-command.md` (use the `x-` prefix)
 2. Add YAML frontmatter with `description` and optional `argument-hint`
 3. Use `$ARGUMENTS` to reference user input
 4. Commit and push — stow keeps the symlink live
@@ -203,8 +210,8 @@ Same logic as above - add to the appropriate module file.
 
 ### New Claude Code slash command
 
-1. Create `claude/.claude/commands/my-command.md`
-2. The command is immediately available as `/my-command` (stow symlink is live)
+1. Create `claude/.claude/commands/x-my-command.md` (use the `x-` prefix)
+2. The command is immediately available as `/x-my-command` (stow symlink is live)
 3. Commit and push
 
 ## Secrets Setup
