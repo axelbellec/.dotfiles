@@ -10,3 +10,8 @@ DOTFILES="$HOME/.dotfiles"
 source "$DOTFILES/zsh/core.zsh"
 source "$DOTFILES/zsh/work.zsh"
 source "$DOTFILES/zsh/personal.zsh"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/axelbellec/.cache/lm-studio/bin"
+# End of LM Studio CLI section
+
